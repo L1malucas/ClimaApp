@@ -1,0 +1,22 @@
+﻿@inject WeatherForecastService weatherForecastService
+
+<h3>Obter Previsão do Tempo</h3>
+
+<p>Cidade: <input type="text" @bind="cityName" /></p>
+<button @onclick="GetWeatherForecast">Obter Previsão</button>
+
+@if (weatherData != null)
+{
+    <h4>Previsão do Tempo para @cityName:</h4>
+    <p>@weatherData</p>
+}
+
+@code {
+    private string cityName;
+    private string weatherData;
+
+    private async Task GetWeatherForecast()
+    {
+        weatherData = await weatherForecastService.GetWeatherForecast(cityName);
+    }
+}
