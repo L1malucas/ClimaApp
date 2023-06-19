@@ -2,7 +2,7 @@
 
 @page "/search"
 @inject WeatherForecastService weatherForecastService
-
+<PageTitle> Search Page</PageTitle>
 
 <h3>Obter Previsão do Tempo </h3>
 <P>Cidade: <input type="text" @bind="cityName"></P>
@@ -11,10 +11,22 @@
 @if (weatherData != null)
 {
     var formattedData = JsonConvert.DeserializeObject<WeatherForecastData>(weatherData);
-    <h4>Previsão do Tempo para @cityName:</h4>
-    <p>Temperatura: @formattedData.Main.Temp °C</p>
-    <p>Descrição: @formattedData.Weather[0].Description</p>
-    <p>Velocidade do Vento: @formattedData.Wind.Speed m/s</p>
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+        <th>Temperatura ºC:</th>
+        <th>Descrição</th>
+        <th>Velocidade do Vento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>@formattedData.Main.Temp</td>
+        <td>@formattedData.Weather[0].Description</td>
+        <td>@formattedData.Wind.Speed m/s</td>
+    </tr>
+  </tbody>
+</table>
 }
 @code {
     private string? cityName;
