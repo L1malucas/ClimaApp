@@ -1,22 +1,49 @@
-﻿@inject WeatherForecastService weatherForecastService
+﻿using Newtonsoft.Json;
 
-<h3>Obter Previsão do Tempo</h3>
+@page "/search"
+@inject WeatherForecastService weatherForecastService
 
-<p>Cidade: <input type="text" @bind="cityName" /></p>
+
+<h3>Obter Previsão do Tempo para Salvador</h3>
+
 <button @onclick="GetWeatherForecast">Obter Previsão</button>
 
 @if (weatherData != null)
 {
-    <h4>Previsão do Tempo para @cityName:</h4>
-    <p>@weatherData</p>
+    var formattedData = JsonConvert.DeserializeObject<WeatherForecastData>(weatherData);
+    <h4>Previsão do Tempo para Salvador:</h4>
+    <p>Temperatura: @formattedData.Main.Temp °C</p>
+    <p>Descrição: @formattedData.Weather[0].Description</p>
+    <p>Velocidade do Vento: @formattedData.Wind.Speed m/s</p>
 }
-
 @code {
-    private string cityName;
-    private string weatherData;
+    private string? cityName;
+    private string? weatherData;
 
     private async Task GetWeatherForecast()
     {
         weatherData = await weatherForecastService.GetWeatherForecast(cityName);
+    }
+
+    public class WeatherForecastData
+    {
+        public MainData Main { get; set; }
+        public WeatherData[] Weather { get; set; }
+        public WindData Wind { get; set; }
+    }
+
+    public class MainData
+    {
+        public double Temp { get; set; }
+    }
+
+    public class WeatherData
+    {
+        public string Description { get; set; }
+    }
+
+    public class WindData
+    {
+        public double Speed { get; set; }
     }
 }
