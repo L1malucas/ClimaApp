@@ -1,17 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿@using Newtonsoft.Json;
 
 @page "/search"
 @inject WeatherForecastService weatherForecastService
 
 
-<h3>Obter Previsão do Tempo para Salvador</h3>
-
+<h3>Obter Previsão do Tempo </h3>
+<P>Cidade: <input type="text" @bind="cityName"></P>
 <button @onclick="GetWeatherForecast">Obter Previsão</button>
 
 @if (weatherData != null)
 {
     var formattedData = JsonConvert.DeserializeObject<WeatherForecastData>(weatherData);
-    <h4>Previsão do Tempo para Salvador:</h4>
+    <h4>Previsão do Tempo para @cityName:</h4>
     <p>Temperatura: @formattedData.Main.Temp °C</p>
     <p>Descrição: @formattedData.Weather[0].Description</p>
     <p>Velocidade do Vento: @formattedData.Wind.Speed m/s</p>
