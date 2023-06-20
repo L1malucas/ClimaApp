@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class WeatherForecastService
 {
     private readonly HttpClient httpClient;
-    private const string ApiKey = "6c3f1bc597dc52aaaf5f221f09e6a532"; 
+    private const string ApiKey = "6c3f1bc597dc52aaaf5f221f09e6a532";
 
     public WeatherForecastService(HttpClient httpClient)
     {

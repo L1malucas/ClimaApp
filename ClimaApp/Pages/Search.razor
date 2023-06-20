@@ -5,9 +5,9 @@
 <PageTitle> Search Page</PageTitle>
 
 <h3>Obter Previsão do Tempo </h3>
-<P>Cidade: <input type="text" @bind="cityName"></P>
+<p>Cidade: <input type="text" @bind="cityName"></p>
 <button @onclick="GetWeatherForecast">Obter Previsão</button>
-
+</br>
 @if (weatherData != null)
 {
     var formattedData = JsonConvert.DeserializeObject<WeatherForecastData>(weatherData);
@@ -17,6 +17,7 @@
         <th>Temperatura ºC:</th>
         <th>Descrição</th>
         <th>Velocidade do Vento</th>
+        <th>Velocidade do Vento</th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,7 @@
         <td>@formattedData.Main.Temp</td>
         <td>@formattedData.Weather[0].Description</td>
         <td>@formattedData.Wind.Speed m/s</td>
+        <td>@formattedData</td>
     </tr>
   </tbody>
 </table>
