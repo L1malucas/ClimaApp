@@ -7,7 +7,7 @@
 <h3>Obter Previsão do Tempo </h3>
 <p>Cidade: <input type="text" @bind="cityName"></p>
 <button @onclick="GetWeatherForecast">Obter Previsão</button>
-</br>
+
 @if (weatherData != null)
 {
     var formattedData = JsonConvert.DeserializeObject<WeatherForecastData>(weatherData);
