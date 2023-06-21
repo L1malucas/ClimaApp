@@ -11,7 +11,7 @@ public class WeatherForecastService
         this.httpClient = httpClient;
     }
 
-    public async Task<string> GetWeatherForecast(string cityName)
+    public async Task<string?> GetWeatherForecast(string cityName)
     {
         var url = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={ApiKey}";
         var response = await httpClient.GetAsync(url);
